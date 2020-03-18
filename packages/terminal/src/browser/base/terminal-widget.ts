@@ -25,7 +25,11 @@ export abstract class TerminalWidget extends BaseWidget {
 
     abstract processId: Promise<number>;
 
-    abstract terminalId: number;
+    abstract readonly terminalId: number;
+
+    /** A boolean that indicates if the terminal is interactive */
+    abstract readonly isInteractive: boolean;
+
     /**
      * Start terminal and return terminal id.
      * @param id - terminal id.
@@ -60,7 +64,8 @@ export abstract class TerminalWidget extends BaseWidget {
 
     abstract onTerminalDidDispose: Event<void>;
 
-    abstract onDidReconnectTerminalProcess: Event<TerminalWidget>;
+    /** Event which fires when the terminal widget connects to the terminal process */
+    abstract onTerminalDidConnectProcess: Event<TerminalWidget>;
 
     /**
      * Cleat terminal output.
